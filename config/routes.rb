@@ -1,5 +1,9 @@
 SingleTwitter::Application.routes.draw do
 
+  root :to => 'tweets#index', :via => :get #limited to a GET request
+
+  match '/' => 'tweets#create', :as => 'tweets', :via => :post   
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

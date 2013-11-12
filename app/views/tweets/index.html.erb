@@ -1,2 +1,14 @@
-<h1>Tweets#index</h1>
-<p>Find me in app/views/tweets/index.html.erb</p>
+<h1>Single User Twitter</h1>
+
+<!-- Will be given an error "undefined method 'tweets_path'" - must create a route matching the 'tweets' name -->
+<%= form_for @tweet do |f| %>
+	<%= f.text_field :status %>
+	<%= f.submit %>
+<% end %>
+
+<div id="tweets">
+	<!-- Will get an nill error - because the @tweets variable has not been declared in the controller that needs to be required-->
+	<% @tweets.each do |tweet| %>
+		<p class="tweet"><%= tweet.status %></p>
+	<% end %>
+</div>
