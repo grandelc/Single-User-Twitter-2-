@@ -1,14 +1,16 @@
-<h1>Single User Twitter</h1>
-
 <!-- Will be given an error "undefined method 'tweets_path'" - must create a route matching the 'tweets' name -->
 <%= form_for @tweet do |f| %>
 	<%= f.text_field :status %>
-	<%= f.submit %>
+	<%= f.submit 'Tweet' %>
 <% end %>
 
-<div id="tweets">
-	<!-- Will get an nill error - because the @tweets variable has not been declared in the controller that needs to be required-->
-	<% @tweets.each do |tweet| %>
-		<p class="tweet"><%= tweet.status %></p>
-	<% end %>
-</div>
+<% if @tweets.size.zero? %>
+	<p>There are no tweets available</p>
+<% else %>
+	<ul id="tweets">
+		<!-- Will get an nill error - because the @tweets variable has not been declared in the controller that needs to be required-->
+		<% @tweets.each do |tweet| %>
+			<li class="tweet"><%= tweet.status %></li>
+		<% end %>
+	</ul>
+<% end %>

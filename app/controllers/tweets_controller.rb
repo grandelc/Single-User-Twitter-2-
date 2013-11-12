@@ -14,14 +14,24 @@ class TweetsController < ApplicationController
     # the params name is always before the properties in the squared braces
     @tweet = Tweet.new(params[:tweet])
 
-    if @tweet.save 
+    if @tweet.save # Do we pass validation?
+
+      # If position exists then displays the message
+      # Can read more info int he rails guide (action_controller_overview)
+      # flash when redirecting 
+      flash[:success] = "Your tweet was successfully posted."
+
       # If our tweet validates, then redirect.
       redirect_to :action => :index
     else
       @tweets = Tweet.order('id DESC')
+
+      # Adds the values in the same request and become available immediately
+      # flash.now when rendering
+      flash.now[:error] = "Sorry, all tweets must be 1 to 140 characters in length."
       render :action => :index 
     end 
-  end
+  end # No associated view is loaded, we either redirect or render .
 
   # index and create functions are DIFFERENT
 end

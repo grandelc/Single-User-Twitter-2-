@@ -6,9 +6,21 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body id="home">
+	<div id="wrapper">
+		
+		<!-- As long as something is in flash[:success] this will evaluate true -->
+		<% if flash[:success] %>
+			<p class="success"><%= flash[:success] %></p>
+		<% end %>
+			
+		<% if flash[:error] %>
+			<p class="error"><%= flash[:error] %></p>
+		<% end %>
 
-<%= yield %>
+		<!-- yield is where the indivual views that get yielded in the view -->
+		<%= yield %>
 
+	</div>
 </body>
 </html>
